@@ -12,7 +12,8 @@ module.exports = {
 			path.join(__dirname, "../src/public/script/index.js")
 		],
 		tag: [
-			path.join(__dirname, "../src/public/script/tag.es6")
+			path.join(__dirname, "../src/public/script/tag.es6"),
+			path.join(__dirname, "../src/public/script/star.es6"),
 		]
 	},
 	output: {
@@ -59,18 +60,29 @@ module.exports = {
 		}),
 		new ExtractTextPlugin("public/css/[name]-[hash:5].css"),
 		new HtmlWebpackPlugin({
-			filename: "./widget/index.html",
-			template: "src/widget/index.html",
-			inject:false
-		}),
-		new HtmlWebpackPlugin({
 			filename: "./views/layout.html",
 			template: "src/widget/layout.html",
 			inject:false
 		}),
 		new HtmlWebpackPlugin({
+			filename: "./widget/index.html",
+			template: "src/widget/index.html",
+			inject:false
+		}),
+		new HtmlWebpackPlugin({
 			filename: "./views/index.html",
 			template: "src/views/index.js",
+			chunks: ["vendor", "index", "tag"],//传入要插入的js文件
+			inject:false
+		}),
+		new HtmlWebpackPlugin({
+			filename: "./widget/star.html",
+			template: "src/widget/star.html",
+			inject:false
+		}),
+		new HtmlWebpackPlugin({
+			filename: "./views/star.html",
+			template: "src/views/star.js",
 			chunks: ["vendor", "index", "tag"],//传入要插入的js文件
 			inject:false
 		})

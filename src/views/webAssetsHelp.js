@@ -11,8 +11,10 @@ module.exports = function (templateParams, cssList) {
 	var _regCss = cssList;
 	var _scripts = "";
 	var _styles = "";
+	var _myscripts = [];
 	for (var i = 0; i < _regChunk.length; i++) {
 		_scripts += "<script type='text/javascript'  src='" + _files.chunks[_regChunk[i]]["entry"] + "'></script>";
+		_myscripts.push("'"+_files.chunks[_regChunk[i]]["entry"]+"'");
 	}
 	for (var k = 0; k < _regCss.length; k++) {
 		var _cssitem = _regCss[k],
@@ -28,6 +30,7 @@ module.exports = function (templateParams, cssList) {
 	}
 	return {
 		scripts: _scripts,
-		styles: _styles
+		styles: _styles,
+		myscripts:_myscripts
 	};
 };

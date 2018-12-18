@@ -3,11 +3,11 @@ module.exports = function (templateParams) {//一直搞不懂templateParams怎�
 	var webAssetsHelp = require("./webAssetsHelp.js")(templateParams, _cssList);
 	var _html =
                 `{% extends './layout.html' %} 
-                {% block title %}厉害{% endblock %} 
+                {% block title %}✨{% endblock %} 
                 {% block styles %} 
                 ${webAssetsHelp.styles}
                 {% endblock %} 
-                {% block content %}{% include '../widget/index.html' %}{% endblock %} 
+                {% block content %}{% include '../widget/star.html' %}{% endblock %} 
                 {% block script %} 
                 ${webAssetsHelp.scripts}
                 {% endblock %}`;
