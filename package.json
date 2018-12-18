@@ -1,0 +1,67 @@
+{
+  "name": "PraiseThumb-second",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "better-npm-run build:dev",
+    "prod": "better-npm-run build:prod",
+    "test": "better-npm-run test"
+  },
+  "betterScripts": {
+    "build:dev": {
+      "command": "webpack  $npm_package_webpack --progress --colors",
+      "env": {
+        "NODE_ENV": "dev"
+      }
+    },
+    "build:prod": {
+      "command": "webpack  $npm_package_webpack --progress --colors",
+      "env": {
+        "NODE_ENV": "prod"
+      }
+    },
+    "test": {
+      "command": "karma start",
+      "env": {
+        "NODE_ENV": "test"
+      }
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "better-npm-run": "^0.1.1",
+    "clean-webpack-plugin": "^1.0.0",
+    "co": "^4.6.0",
+    "css-loader": "^2.0.0",
+    "eslint": "^5.9.0",
+    "eslint-plugin-html": "^5.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "koa": "^2.6.2",
+    "koa-simple-router": "^0.2.0",
+    "koa-static": "^5.0.0",
+    "koa-swig": "^2.2.1",
+    "mocha": "^5.2.0",
+    "optimize-css-assets-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "style-loader": "^0.23.1",
+    "supertest": "^3.3.0",
+    "webpack": "^3.8.1",
+    "webpack-livereload-plugin": "^1.2.0"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise": "^4.2.2"
+  }
+}
