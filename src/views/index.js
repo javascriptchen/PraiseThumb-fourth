@@ -9,7 +9,27 @@ module.exports = function (templateParams) {//一直搞不懂templateParams怎�
                 {% endblock %} 
                 {% block content %}{% include '../widget/index.html' %}{% endblock %} 
                 {% block script %} 
-                ${webAssetsHelp.scripts}
+                <script>
+                (function () {
+                    var myscripts = [${webAssetsHelp.myscripts}];
+                    for (let i = 0; i < myscripts.length; i++) {
+                        let a = myscripts[i];
+                        if (localStorage.getItem(a)) {
+                            $("<scr" + "ipt>" + localStorage.getItem(a) + "</scr" + "ipt>").attr({
+                                "type": "text/javascript",
+                                "id": i
+                            }).appendTo($("head").remove("id", i));
+                        }else{
+                            $.getScript({
+                                url:a,
+                                success:function(data){
+                                    localStorage.setItem(a,data);
+                                }
+                            });
+                        }
+                    }
+                })();
+                </script>
                 {% endblock %}`;
 
 	return _html;

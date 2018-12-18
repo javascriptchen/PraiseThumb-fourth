@@ -16,11 +16,12 @@
 </head>
 
 <body>
+    <br>
     <a href="/index/star">跳转到star</a>
     <a href="/index/praise">跳转到praise</a>
     <div id="changeContent">{% block content %}{% endblock %}</div>
     <script>
-        $(document).pjax('a', '#changeContent')
+        $(document).pjax("a", "#changeContent");
     </script>
     {% block script %}{% endblock %}
 </body>
