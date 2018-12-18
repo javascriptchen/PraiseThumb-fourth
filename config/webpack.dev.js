@@ -4,6 +4,7 @@ const LiveReloadPlugin = require("webpack-livereload-plugin"); //监控浏览器
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//抽取css
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");//自动插入js/css，自动生成html
+var Manifest= require('webpack-manifest');
 
 module.exports = {
 	entry: {// 这边有几个entry文件，就会出现几个js文件
@@ -85,6 +86,24 @@ module.exports = {
 			template: "src/views/star.js",
 			chunks: ["vendor", "index", "tag"],//传入要插入的js文件
 			inject:false
+		}),
+		new Manifest({
+			cache: [
+			  '../public/css/vendor-[hash:5].css'
+			],
+			//Add time in comments.
+			timestamp: true,
+			// 生成的文件名字，选填
+			// The generated file name, optional.
+			filename:'cache.manifest', 
+			// 注意*星号前面用空格隔开
+			network: [
+			  ' *',
+			],
+			// manifest 文件中添加注释
+			// Add notes to manifest file.
+			headcomment: "test", 
+			master: ['./views/layout.html']
 		})
 	]
 };
