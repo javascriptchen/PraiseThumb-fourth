@@ -11,6 +11,7 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
+    <script src="https://cdn.bootcss.com/localforage/1.7.3/localforage.js"></script>
     {% endblock %}
     {% block styles %}{% endblock %}
 </head>
@@ -22,6 +23,21 @@
     <div id="changeContent">{% block content %}{% endblock %}</div>
     <script>
         $(document).pjax("a", "#changeContent");
+        localforage.getItem("advertisement").then(function (value) {
+        	if (value) {
+        		$("body").prepend(value);
+        	} else {
+        		$.ajax({
+        			url: "/index/adv",
+        			success: function (data) {
+        				localforage.setItem("advertisement", data);
+        				$("body").prepend(data);
+        			}
+        		});
+        	}
+        }).catch(function (err) {
+        	console.log(err);
+        });
     </script>
     {% block script %}{% endblock %}
 </body>

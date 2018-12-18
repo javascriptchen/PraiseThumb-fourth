@@ -35,6 +35,11 @@ const indexController = {
 				});
 			}
 		};
+	},
+	advertisement() {
+		return async (ctx, next) => {
+			ctx.body = "<div style='background:red;height:100px'>advertisement</div>";
+		};
 	}
 };
 
