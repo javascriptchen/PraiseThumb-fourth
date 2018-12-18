@@ -5,6 +5,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const Manifest = require("webpack-manifest");
 
 module.exports = {
 	entry: {
@@ -13,11 +14,13 @@ module.exports = {
 			path.join(__dirname, "../src/public/script/index.js")
 		],
 		tag: [
-			path.join(__dirname, "../src/public/script/tag.es6")
+			path.join(__dirname, "../src/public/script/tag.es6"),
+			path.join(__dirname, "../src/public/script/star.es6"),
 		]
 	},
 	output: {
 		filename: "public/scripts/[name]-[hash:5].js",
+		publicPath: "http://192.168.61.100:3000/",
 		path: path.join(__dirname, "../build")
 	},
 	module: {
@@ -78,13 +81,13 @@ module.exports = {
 			canPrint: true,
 		}),
 		new HtmlWebpackPlugin({
-			filename: "./widget/index.html",
-			template: "src/widget/index.html",
+			filename: "./views/layout.html",
+			template: "src/widget/layout.html",
 			inject: false
 		}),
 		new HtmlWebpackPlugin({
-			filename: "./views/layout.html",
-			template: "src/widget/layout.html",
+			filename: "./widget/index.html",
+			template: "src/widget/index.html",
 			inject: false
 		}),
 		new HtmlWebpackPlugin({
@@ -92,6 +95,35 @@ module.exports = {
 			template: "src/views/index.js",
 			chunks: ["vendor", "index", "tag"], //传入要插入的js文件
 			inject: false
+		}),
+		new HtmlWebpackPlugin({
+			filename: "./widget/star.html",
+			template: "src/widget/star.html",
+			inject: false
+		}),
+		new HtmlWebpackPlugin({
+			filename: "./views/star.html",
+			template: "src/views/star.js",
+			chunks: ["vendor", "index", "tag"], //传入要插入的js文件
+			inject: false
+		}),
+		new Manifest({
+			cache: [
+				"../public/css/vendor-[hash:5].css"
+			],
+			//Add time in comments.
+			timestamp: true,
+			// 生成的文件名字，选填
+			// The generated file name, optional.
+			filename: "cache.manifest",
+			// 注意*星号前面用空格隔开
+			network: [
+				" *",
+			],
+			// manifest 文件中添加注释
+			// Add notes to manifest file.
+			headcomment: "test",
+			master: ["./views/layout.html"]
 		})
 	]
 };

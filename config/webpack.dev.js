@@ -4,7 +4,7 @@ const LiveReloadPlugin = require("webpack-livereload-plugin"); //监控浏览器
 const ExtractTextPlugin = require("extract-text-webpack-plugin");//抽取css
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");//自动插入js/css，自动生成html
-var Manifest= require('webpack-manifest');
+const Manifest= require('webpack-manifest');
 
 module.exports = {
 	entry: {// 这边有几个entry文件，就会出现几个js文件
