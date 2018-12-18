@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <title>{% block title %}{% endblock %}</title>
+    <meta http-equiv="x-dns-prefetch-control" content="on">
     {% block head %}
+    <link rel="dns-prefetch" href="//cdn.bootcss.com">
     <script src="https://cdn.bootcss.com/x-tag/1.5.1/x-tag-core.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
     <script src="https://cdn.bootcss.com/axios/0.17.1/axios.min.js"></script>
